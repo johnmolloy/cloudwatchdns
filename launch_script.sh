@@ -1,6 +1,5 @@
 #!/bin/bash
 yum install -y httpd
-yum install -y git
 cd /var/www/html/
 wget http://i.imgur.com/VuofKvO.jpg
 echo "<html><div align="center"><h1>Webpage Test</h1></div>
@@ -15,8 +14,7 @@ EOL
 chkconfig httpd on
 service httpd start
 cd /home/ec2-user
-git clone https://github.com/johnmolloy/cloudwatchdns.git
-chmod a+x /home/ec2-user/cloudwatchdns/cloudwatchmetric.sh
+
 echo "*/1 * * * * ec2-user /home/ec2-user/cloudwatchdns/cloudwatchmetric.sh" > /etc/cron.d/cloudwatchmetric
 
 SERVER=`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id`
